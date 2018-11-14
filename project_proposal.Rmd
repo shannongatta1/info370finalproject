@@ -37,8 +37,13 @@ I    | Election Overturned - contested election, ultimately losing the seat
 
 #### The format of our final web source will be a Jupyter Notebook HTML complied webpage. A data management challenge for us lies within the Category column. There are some Congressional members that resigned for multiple reasons, resulting in the Category column appearing as "E&F", for example. We will need to separate this data and find a way to categorize them that does not result in doubling up the data provided. We will need to familiarize ourselves with K Nearest Data Machine Learning algorithms a bit more, and understanding if this is the best fit for the model we desire to create. We will also need to familiarize ourselves with Git Bash and merging our branches when dealing with multiple partners. **Add technical detailed description here**
 
-```{r proposal}
-
+```{r proposal include=FALSE}
+library(knitr)
+library(kableExtra)
+cdata <- read.csv('./congressional_resignations.csv', stringsAsFactors = FALSE)
+cdata %>%
+  kable() %>%
+  kable_styling()
 ```
 
 ## Cited Sources
