@@ -1,6 +1,6 @@
 ---
 title: "Project Proposal"
-author: "Shannon Gatta, Andrea Lourdes Jorge, Chen Manija, Julia Zaratan"
+author: "Shannon Gatta, Andrea Jorge, Chen Manija, Julia Zaratan"
 date: "November 13, 2018"
 output: html_document
 ---
