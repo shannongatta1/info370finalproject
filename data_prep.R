@@ -70,6 +70,7 @@ get_common_name <- function(name) {
 }
 
 all$Member <- lapply(all$bioname, get_common_name) %>% unlist(.)
+all$Member <- paste(all$Member, all$last_name, sep = ' ')
 
 # Convert party code to party name
 get_party_name <- function(code) {
@@ -117,7 +118,7 @@ for (i in 1:nrow(all)) {
   all$age[i] <- all$age[[i]][1]
 }
 
-colnames(all) <- c('Congress', 'Full Name', 'State', 'born', 'died', 'Party', 'last_name', 'sess_1', 'sess_2', 'age')
+colnames(all) <- c('Congress', 'Full Name', 'State', 'born', 'died', 'Party', 'last_name', 'Member', 'sess_1', 'sess_2', 'age')
 
 # Data prep for 'resignations' dataframe ----------------------------------------------------------
 
@@ -198,7 +199,7 @@ resignations$year <- lapply(resignations$Resignation.Date,
 # Identify members by last name, party, state, and congress
 all <- as.data.frame(lapply(all, unlist))
 resignations <- as.data.frame(lapply(resignations, unlist))
-resignations <- merge(all, resignations, by='')
+#resignations <- merge(all, resignations, by='')
 combined <- merge(all, resignations, by=c('Congress', 'State', 'Party', 'last_name'), all.x=TRUE)
 
 # Remove unnecessary columns
@@ -209,3 +210,5 @@ combined$last_name <- NULL
 # Check joined rows
 sum(!is.na(combined$Reason))
 resigned <- filter(combined, !is.na(Reason))
+
+write.csv(combined, 'congress_training_data.csv', row.names = FALSE)
