@@ -64,4 +64,4 @@ dems$Partisan.Lean <- NULL
 dems$Race.Primary.Election.Date <- NULL
 
 # Export CSV
-write.csv(dems, file = './data/dem_candidates_prepped', row.names = FALSE)
+write.csv(dems, file = './data/dem_candidates_prepped.csv', row.names = FALSE)
