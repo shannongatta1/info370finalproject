@@ -16,7 +16,7 @@ endorsement_cols <- grep('.Endorsed', colnames(dems), value = TRUE)
 
 fill_neutral <- function(row) {
   if (row == "") {
-    return ('Netural')
+    return ('Neutral')
   } else {
     return (row)
   }
