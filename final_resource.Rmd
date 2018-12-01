@@ -7,8 +7,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
 library(plotly)
+library(dplyr)
+library(reticulate)
+library(lattice)
+library(ggplot2)
+library(GGally)
 
+
+dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 
 ```
 
@@ -16,21 +24,56 @@ library(plotly)
 
 As the coming of a younger generation moves into politics^1^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^2^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
 
-> "How can different factors about a candidate allow us to predict their likeliness of winning the Democratic Primaries of 2018?"
+> "How can different factors about a candidate allow us to predict their likeliness of winning the Democratic Primaries for 2018?"
 
+After seeing the surgence of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to dectect if the new candidates are the new norm, or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conseratives alike bring a unique persoective to their office role, and the uncommon candidate should both be informed wheather or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
 ```{r example, echo=FALSE}
+#planes <- group_by(dems, Office.Type)
+#df2 <- count("Yes", c())
+#num_lgbtq <- length(which(planes$LGBTQ. == "Yes"))
+#planes <- dems %>%
+    #group_by(dems$Office.Type) %>%
+    #sum(dems$LGBTQ.=="Yes")
+#comparison graph of people who said yes and no to LGBTQ and either won or lost the primaries
+test <- count(dems, "LGBTQ.")
 
-p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
+p <- plot_ly(data = test, type="bar", mode = "markers", x = test$LGBTQ., y = test$freq)
 htmltools::tagList(list(p))
 
 ```
+```{r facet, echo=FALSE}
 
+
+# ggpairs(dems, columns=1:11,
+#         colour='q',lower=list(continuous='points'),
+#         axisLabels='none',
+#         upper=list(continuous='blank'))
+
+```
 ## The Data
 
 
 
 ```{r pressure, echo=FALSE}
 
+t <- plot_ly(data = iris, type = 'scatter', mode = 'markers') %>%
+  add_trace(
+    x = ~Sepal.Length,
+    y = ~Petal.Length,
+    marker = list(
+      color = 'rgb(17, 157, 255)',
+      size = 20,
+      line = list(
+        color = 'rgb(231, 99, 250)',
+        width = 2
+      )
+    ),
+    showlegend = F
+  )
+htmltools::tagList(list(t))
 ```
 
+## Cited sources(will hyperlink)
+
+^1^ https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/
 ^2^ https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics
