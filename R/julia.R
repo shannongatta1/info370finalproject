@@ -12,22 +12,20 @@ unknown_can <- data %>% filter(Race == 'Unknown')
 advanced <- data %>% filter(Primary.Status == 'Advanced')
 lost <- data %>% filter(Primary.Status == 'Lost')
 
-race <- data.frame(race=c("White", "Nonwhite", "Unknown"),
-                 value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
+race <- data.frame(race=c("White", "Nonwhite", "Unknown"), value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
 
 
 # 32% of the candidate advanced
 percent_advanced <- nrow(advanced)/(nrow(advanced)+nrow(lost)) * 100
 
 #pie chart
-race_proportions<- ggplot(race, aes(x="", y=value, fill=race))+
-  geom_bar(width = 1, stat = "identity") +
-  coord_polar("y", start=0) + 
-        geom_text(aes(y = value/2 + 
-        c(0, cumsum(value)[-length(value)]), 
-            label = percent(value/(nrow(white_can)+nrow(non_white_can)))), size=5)
+ggplot(race, aes(x="", y=value, fill=race))+ 
+  geom_bar(width = 1, stat = "identity")+
+  coord_polar("y", start=0) +
+  geom_text(aes(y = value/2 + 
+  c(0, cumsum(value)[-length(value)]), label = percent(value/(nrow(white_can)+nrow(non_white_can)+nrow(unknown_can)))), size=5)
 
-
+            
 # stacked bar charts
 data$Race <- factor(data$Race) # Create a categorical variable
 data$Primary.Status <- factor(data$Primary.Status) # Create categorical variable
