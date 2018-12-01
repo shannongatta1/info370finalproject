@@ -16,64 +16,58 @@ library(ggplot2)
 library(GGally)
 
 
+
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 
 ```
 
 ## A Political Shift...
 
-As the coming of a younger generation moves into politics^1^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^2^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
+As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
 
 > "How can different factors about a candidate allow us to predict their likeliness of winning the Democratic Primaries for 2018?"
 
-After seeing the surgence of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to dectect if the new candidates are the new norm, or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conseratives alike bring a unique persoective to their office role, and the uncommon candidate should both be informed wheather or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
-```{r example, echo=FALSE}
-#planes <- group_by(dems, Office.Type)
-#df2 <- count("Yes", c())
-#num_lgbtq <- length(which(planes$LGBTQ. == "Yes"))
-#planes <- dems %>%
-    #group_by(dems$Office.Type) %>%
-    #sum(dems$LGBTQ.=="Yes")
-#comparison graph of people who said yes and no to LGBTQ and either won or lost the primaries
-test <- count(dems, "LGBTQ.")
+We are going to predict the outcome with a binary return stating weather the candidate in question will lose or advance in the primaries. After seeing the surgence of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to dectect if the new candidates are the new norm, or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conseratives alike bring a unique persoective to their office role, and the uncommon candidate should both be informed wheather or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
 
-p <- plot_ly(data = test, type="bar", mode = "markers", x = test$LGBTQ., y = test$freq)
-htmltools::tagList(list(p))
+## The Data
+
+Data and vairable explaination goes here.
+
+## Exploring The Dataset
+
+In order to narrow down the features we want to focus on, We will explore covariate values we found as an additive to building our statistical model. 
+
+### Co
+```{r example, echo=FALSE}
+
+ggplot(data = dems, aes(x = Primary.Status, fill = LGBTQ.)) +
+  geom_bar(position=position_dodge()) + 
+  ggtitle("Results for LGBTQ+ in the Primary Races")
+#ggplotly(new)
+#htmltools::tagList(list(new))
 
 ```
+
+
+
 ```{r facet, echo=FALSE}
 
 
-# ggpairs(dems, columns=1:11,
+# ggpairs(dems, columns=c(dems$Office.Type, dems$Primary.Status, dems$Race, dems$Veteran., dems$LGBTQ.),
 #         colour='q',lower=list(continuous='points'),
 #         axisLabels='none',
 #         upper=list(continuous='blank'))
 
 ```
-## The Data
 
 
 
-```{r pressure, echo=FALSE}
 
-t <- plot_ly(data = iris, type = 'scatter', mode = 'markers') %>%
-  add_trace(
-    x = ~Sepal.Length,
-    y = ~Petal.Length,
-    marker = list(
-      color = 'rgb(17, 157, 255)',
-      size = 20,
-      line = list(
-        color = 'rgb(231, 99, 250)',
-        width = 2
-      )
-    ),
-    showlegend = F
-  )
-htmltools::tagList(list(t))
+## Machine Learning
+
+By using the KNN Regressor, the target is predicted by local interpolation of the targets associated with the nearest neighbors in the training set. We used grid search to cross validate and assess the accuracy of each possible model. For the grid search we used the n_neighbors which determines the amount of neighbors the KNN model should look at. We also used KNN's weight parameter to determine if points should either be weighted uniformly or by their distance from the target point. Using the auto parameter of the KNN algorithm lets it determine which type of algorithm to use when computing nearest neighbors. Our last parameter is the leaf_size which determines how many endpoints the KNN tree will have. Outside of the KNN regressor we use selectkbest to determine the best features to include in the algorithm based on their regression scores from f_regression. This model also uses a MinMaxScaler for scaling the data between 0 and 1.
+
+```{r ML, echo=FALSE}
+
+
 ```
-
-## Cited sources(will hyperlink)
-
-^1^ https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/
-^2^ https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics
