@@ -36,3 +36,21 @@ success_pie<- ggplot(race_success, aes(x="", y=value, fill=race))+
                   c(0, cumsum(value)[-length(value)]), 
                 label = percent(value/(nrow(white_can_success)+nrow(non_white_can_success)))), size=5)
 
+
+# stacked bar charts
+data$Race <- factor(data$Race) # Create a categorical variable
+data$Primary.Status <- factor(data$Primary.Status) # Create categorical variable
+
+status_race_stacked <- ggplot(data%>% count(Primary.Status, Race) %>%
+         mutate(pct=n/sum(n)),              # Calculate percent within each region
+       aes(Primary.Status, n, fill=Race)) +
+  geom_bar(stat="identity") +
+  geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
+            position=position_stack(vjust=0.5))
+
+race_status_stacked <- ggplot(data%>% count(Race, Primary.Status) %>%  
+         mutate(pct=n/sum(n)),              # Calculate percent within each region
+       aes(Race, n, fill=Primary.Status)) +
+  geom_bar(stat="identity") +
+  geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
+            position=position_stack(vjust=0.5))
