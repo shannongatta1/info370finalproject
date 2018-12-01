@@ -1,5 +1,5 @@
 ---
-title: "final_resource"
+title: "The Democratic Primaries 2018"
 author: "Shannon Gatta, Andrea Jorge, Chen Manija, Julia Zaratan"
 date: "November 30, 2018"
 output: html_document
@@ -12,24 +12,25 @@ library(plotly)
 
 ```
 
-## R Markdown
+## A Political Shift...
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+As the coming of a younger generation moves into politics^1^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^2^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+> "How can different factors about a candidate allow us to predict their likeliness of winning the Democratic Primaries of 2018?"
 
-```{r cars}
+```{r example, echo=FALSE}
 
 p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
 htmltools::tagList(list(p))
+
 ```
 
-## Including Plots
+## The Data
 
-You can also embed plots, for example:
+
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+^2^ https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics
