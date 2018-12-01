@@ -71,7 +71,8 @@ ggplot(data = dems) +
   geom_bar(mapping = aes(x = Primary.Status, fill = Office.Type)) +
   labs(
     title = "How do different office types affect the the possibilty of winning the primary?"
-  )
+  )+ scale_fill_brewer(palette="Blues")
+
 ```
 
 
