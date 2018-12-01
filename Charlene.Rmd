@@ -35,8 +35,16 @@ p = 265 / 811
 ```
 
 Column | Description 
--------|-----------------------------------------------------------------------------------------
-`Race` | “White” if we identified the candidate as non-Hispanic white; “Nonwhite” if we identified the candidate as Hispanic and/or any nonwhite race; blank if we could not identify the candidate’s race or ethnicity. To determine race and ethnicity, we checked each candidate’s website to see if he or she identified as a certain race. If not, we spent no more than two minutes searching online news reports for references to the candidate’s race.
+-------|----------------------------------------------------------------------------------------
+`Candidate` | All candidates who received votes in 2018’s Democratic primary elections for U.S. Senate, U.S. House and governor in which no incumbent ran. Supplied by Ballotpedia.
+`State` | The state in which the candidate ran. Supplied by Ballotpedia.
+`District` | The office and, if applicable, congressional district number for which the candidate ran. Supplied by Ballotpedia.
+`Office Type` | The office for which the candidate ran. Supplied by Ballotpedia.
+`Race Type` | Whether it was a “regular” or “special” election. Supplied by Ballotpedia.
+`Race Primary Election Date` | The date on which the primary was held. Supplied by Ballotpedia.
+`Primary Status` | Whether the candidate lost (“Lost”) the primary or won/advanced to a runoff (“Advanced”). Supplied by Ballotpedia.
+`Primary Runoff Status` | “None” if there was no runoff; “On the Ballot” if the candidate advanced to a runoff but it hasn’t been held yet; “Advanced” if the candidate won the runoff; “Lost” if the candidate lost the runoff. Supplied by Ballotpedia.
+`Primary %` | The percentage of the vote received by the candidate in his or her primary. In states that hold runoff elections, we looked only at the first round (the regular primary). In states that hold all-party primaries (e.g., California), a candidate’s primary percentage is the percentage of the total Democratic vote they received. Unopposed candidates and candidates nominated by convention (not primary) are given a primary percentage of 100 but were excluded from our analysis involving vote share. Numbers come from official results posted by the secretary of state or local elections authority; if those were unavailable, we used unofficial election results from the New York Times.
 `Veteran?` | If the candidate’s website says that he or she served in the armed forces, we put “Yes.” If the website is silent on the subject (or explicitly says he or she didn’t serve), we put “No.” If the field was left blank, no website was available.
 `LGBTQ?` | If the candidate’s website says that he or she is LGBTQ (including indirect references like to a same-sex partner), we put “Yes.” If the website is silent on the subject (or explicitly says he or she is straight), we put “No.” If the field was left blank, no website was available.
 `Elected Official?` | We used Ballotpedia, VoteSmart and news reports to research whether the candidate had ever held elected office before, at any level. We put “Yes” if the candidate has held elected office before and “No” if not. 
@@ -66,9 +74,6 @@ ggplot(data = dems) +
   )
 ```
 
-```{r}
-library(vcd)
-mosaic(Primary.Status ~ Race + Veteran. , data = dems, shade=TRUE)
-```
+
 
 
