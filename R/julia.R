@@ -7,36 +7,25 @@ data <- read.csv('../data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 #Race
 white_can <- data %>% filter(Race == 'White')
 non_white_can <- data %>% filter(Race == 'Nonwhite')
+unknown_can <- data %>% filter(Race == 'Unknown')
 
-race <- data.frame(race=c("White", "Nonwhite"),
-                 value=c(nrow(white_can), nrow(non_white_can)))
+advanced <- data %>% filter(Primary.Status == 'Advanced')
+lost <- data %>% filter(Primary.Status == 'Lost')
 
-ggplot(data=race, aes(x=race, y=value, fill=race)) +
-  geom_bar(stat="identity")
+race <- data.frame(race=c("White", "Nonwhite", "Unknown"), value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
+
+
+# 32% of the candidate advanced
+percent_advanced <- nrow(advanced)/(nrow(advanced)+nrow(lost)) * 100
 
 #pie chart
-piechart<- ggplot(race, aes(x="", y=value, fill=race))+
-  geom_bar(width = 1, stat = "identity") +
-  coord_polar("y", start=0) + 
-        geom_text(aes(y = value/2 + 
-        c(0, cumsum(value)[-length(value)]), 
-            label = percent(value/(nrow(white_can)+nrow(non_white_can)))), size=5)
-
-#success vs race
-white_can_success <- data %>% filter(Race == 'White') %>% filter(Primary.Status == "Advanced")
-non_white_can_success <- data %>% filter(Race == 'Nonwhite') %>% filter(Primary.Status == "Advanced")
-
-race_success <- data.frame(race=c("White", "Nonwhite"),
-                   value=c(nrow(white_can_success), nrow(non_white_can_success)))
-
-success_pie<- ggplot(race_success, aes(x="", y=value, fill=race))+
-  geom_bar(width = 1, stat = "identity") +
-  coord_polar("y", start=0) + 
+ggplot(race, aes(x="", y=value, fill=race))+ 
+  geom_bar(width = 1, stat = "identity")+
+  coord_polar("y", start=0) +
   geom_text(aes(y = value/2 + 
-                  c(0, cumsum(value)[-length(value)]), 
-                label = percent(value/(nrow(white_can_success)+nrow(non_white_can_success)))), size=5)
+  c(0, cumsum(value)[-length(value)]), label = percent(value/(nrow(white_can)+nrow(non_white_can)+nrow(unknown_can)))), size=5)
 
-
+            
 # stacked bar charts
 data$Race <- factor(data$Race) # Create a categorical variable
 data$Primary.Status <- factor(data$Primary.Status) # Create categorical variable
