@@ -3,22 +3,6 @@ library(dplyr)
 
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 dummies <- read.csv('./data/dem_with_dummies.csv', stringsAsFactors = FALSE)
-# bar chart:
-# x-axis - election month
-# y-axis - count
-# color by primary status
-
-# map:
-# fill each state with a different color depending on the month of the election
-
-
-
-# pie chart for endorsements: --> facet grid
-# number of yes, no, neutral
-
-# bar chart: --> facet grid
-# number of yes, no, neutral
-# color by primary status
 
 count_endorsements <- dems %>% select(c(16:27))
 dems$Neutral.Endorsements <- rowSums(count_endorsements == 'Neutral')
