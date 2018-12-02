@@ -1,0 +1,181 @@
+,Candidate,State,outcome,knn_pred,rfc_pred
+310,Ian Conyers,MI,0,0,0
+333,Mark Osmack,MO,0,1,1
+463,Antonio Delgado,NY,1,0,0
+26,Hiral Tipirneni,AZ,1,0,0
+490,Dennis J. Kucinich,OH,0,0,0
+294,Gretchen Whitmer,MI,1,0,0
+330,Bill Haas,MO,0,0,0
+158,Peter Rickards,ID,0,1,0
+548,Frankie Robbins,OK,1,0,0
+329,Martin Brook,MI,0,0,0
+351,Howard Sherman,MS,1,1,0
+198,Douglas Carpenter,IN,0,0,0
+559,Tyson Todd Meade,OK,0,1,0
+354,Omeria Scott,MS,0,1,0
+250,Patti Piatt,KY,0,1,1
+153,Peter Dill,ID,0,0,0
+33,John Chiang,CA,0,1,0
+229,Carl Brewer,KS,0,0,0
+277,Christopher Hearsey,MD,0,0,0
+96,Donna Lynne,CO,0,0,0
+325,Chris Smith,MI,0,0,0
+280,Nadia Hashimi,MD,0,0,0
+389,Kara Eastman,NE,1,1,0
+274,Andrew Duck,MD,0,0,0
+223,Lane Siekman,IN,0,1,0
+352,Jensen Bohren,MS,0,1,0
+407,Goutam Jois,NJ,0,0,0
+344,Vincent Jennings,MO,0,0,0
+171,Jonathan Ebel,IL,0,0,0
+218,George Thomas Holland,IN,0,0,0
+516,Aaron Godfrey,OH,0,0,0
+585,Robert Multari,PA,0,0,0
+376,Kyle Horton,NC,1,0,0
+320,George Franklin,MI,0,0,0
+284,Diane Russell,ME,0,1,1
+305,Bill Wild,MI,0,0,0
+104,Chase Kohne,CO,0,0,0
+49,TJ Cox,CA,1,0,1
+272,Michael Pullen,MD,0,1,0
+88,Sara Jacobs,CA,0,0,0
+543,Tim Gilpin,OK,1,0,0
+285,Donna Dion,ME,0,0,0
+251,Seth Hall,KY,1,0,0
+123,Bobby Kaple,GA,0,0,0
+448,Daniel Burleigh,NV,0,0,0
+392,Frank Svoboda,NE,0,1,0
+137,Fred Hubbell,IA,1,0,0
+566,Timothy White,OR,0,1,0
+478,Eddie Sundquist,NY,0,0,0
+4,Sue Bell Cobb,AL,0,0,0
+514,Rick Neal,OH,1,1,0
+327,Andy Levin,MI,1,0,0
+144,Thomas Heckroth,IA,0,0,0
+146,Eddie Mauro,IA,0,0,0
+61,Andy Thorburn,CA,0,0,0
+470,DuWayne Gregory,NY,0,0,0
+530,Werner Lange,OH,0,0,0
+360,Kathleen Williams,MT,1,0,0
+143,George Ramsey,IA,0,0,0
+207,Darin Patrick Griesey,IN,0,1,0
+149,John Paschen,IA,0,0,0
+571,Eric Ding,PA,0,0,0
+296,Frank Accavitti Jr.,MI,0,1,0
+291,Lucas St. Clair,ME,0,0,0
+183,Neill Mohammad,IL,0,0,0
+576,Marc Friedenberg,PA,1,0,0
+201,Pat Hackett,IN,0,0,0
+109,Stacey Abrams,GA,1,1,1
+369,Linda Coleman,NC,1,1,1
+195,Kelly Mazeski,IL,0,0,0
+304,Bill Wild,MI,0,0,0
+599,Theresa Wright,PA,0,1,0
+295,Shri Thanedar,MI,0,0,0
+372,Jenny Marshall,NC,0,1,0
+544,Clay Padgett,OK,1,1,0
+453,Elaine DiMasi,NY,0,0,0
+276,Chris Graves,MD,0,0,0
+440,Allison Stephens,NV,0,0,0
+2,"Doug ""New Blue"" Smith",AL,0,0,0
+578,Adam Sedlock,PA,0,0,0
+210,Roland Ellis,IN,0,0,0
+155,James Vandermaas,ID,0,1,0
+54,Mary Helen Barro,CA,0,1,0
+95,Cary Kennedy,CO,0,1,1
+56,Wendy Reed,CA,0,1,0
+595,Mary Gay Scanlon,PA,1,1,0
+70,Roza Calderon,CA,0,1,0
+346,Randy Wadkins,MS,1,0,0
+271,Michael Brown,MD,0,0,0
+434,Guy Pinjuv,NV,0,0,0
+199,John Petroff,IN,0,0,0
+462,Zach Emig,NY,0,0,0
+528,John Michael Galbraith,OH,1,0,0
+148,J.D. Scholten,IA,1,1,1
+394,Larry Marvin,NE,0,1,0
+307,Brenda Jones,MI,0,0,0
+487,Rachel Barnhart,NY,0,0,0
+57,Bryan Caforio,CA,0,0,0
+498,Robert Klepinger,OH,0,0,0
+53,Kurtis Wilson,CA,0,1,0
+191,Amanda Howland,IL,0,0,0
+464,Brian Flynn,NY,0,0,0
+570,Alan Howe,PA,0,1,0
+298,Michael McCarthy (Michigan),MI,0,0,0
+458,Michael DeVito Jr.,NY,0,0,0
+549,Murray Thibodeaux,OK,0,0,0
+174,Jim Walz,IL,0,0,0
+39,Audrey Denney,CA,1,1,0
+60,Mary Pallant,CA,0,0,0
+511,Zach Scott,OH,0,0,0
+204,Courtney Tritch,IN,1,1,0
+129,Ethan Pham,GA,0,0,0
+541,Gwendolyn Fields,OK,0,0,0
+429,Jesse Hurley,NV,0,0,0
+558,Tom Guild,OK,1,1,0
+44,Josh Harder,CA,1,0,1
+361,Lynda Moss,MT,0,0,0
+387,Jessica McClure,NE,1,0,0
+341,Jamie Schoolcraft,MO,1,1,0
+575,Judy Herschel,PA,0,1,0
+173,George Weber,IL,0,0,0
+240,Tom Niermann,KS,0,0,0
+214,Dion Douglas,IN,0,1,0
+522,Janet Everhard,OH,0,1,1
+425,John Bonaventura,NV,0,0,0
+404,Andrew Kim,NJ,1,1,1
+437,Richard Hart,NV,0,0,0
+268,Allison Galbraith,MD,0,0,0
+413,Antoinette Sedillo Lopez,NM,0,0,0
+507,Jackie Patton,OH,0,0,0
+179,Carl Spoerer,IL,0,0,0
+391,Chris Janicek,NE,0,1,0
+517,Grant Goodrich,OH,0,0,0
+139,Nate Boulton,IA,0,0,0
+9,Tabitha Isner,AL,1,1,0
+398,Mitchell Cobert,NJ,0,0,0
+6,Lizzetta Hill McConnell,AL,0,0,0
+217,Sean Dugdale,IN,0,1,0
+405,Jim Keady,NJ,0,1,1
+455,Perry Gershon,NY,1,0,0
+230,Jack Bergeson,KS,0,0,0
+347,Michael Aycox,MS,0,1,0
+324,Steven Friday,MI,0,0,0
+467,Gareth Rhodes,NY,0,0,0
+83,Rachel Payne,CA,0,0,0
+423,David Jones,NV,0,0,0
+424,Henry Thorns,NV,0,0,0
+348,Michael Evans,MS,1,1,0
+99,Joe Neguse,CO,1,1,0
+124,Kevin Abel,GA,1,0,0
+219,Jeannine Lee Lake,IN,1,1,0
+400,Jeff Van Drew,NJ,1,1,1
+87,Paul Kerr,CA,0,0,0
+568,Scott Wallace,PA,1,1,0
+247,Hank Linderman,KY,1,0,0
+417,Patrick Davis,NM,0,0,0
+130,Kathleen Allen,GA,0,0,0
+74,Dave Min,CA,0,0,0
+136,Cathy Glasson,IA,0,1,0
+588,Madeleine Dean,PA,1,1,1
+16,Jared Henderson,AR,1,0,0
+113,Chalis Montgomery,GA,0,1,0
+7,Robert Kennedy Jr.,AL,1,1,0
+527,James Neu Jr.,OH,0,1,1
+410,Jeff Apodaca,NM,0,0,0
+169,David Gill,IL,0,0,0
+445,Steven Horsford,NV,1,1,1
+67,Jessica Morse,CA,1,0,0
+513,Betsy Rader,OH,1,1,1
+432,Vance Alm,NV,0,0,0
+270,Jesse Colvin,MD,1,1,0
+266,Richard Madaleno,MD,0,0,0
+253,Scott Sykes,KY,0,1,0
+221,Joshua Williamson,IN,0,0,0
+396,Mark Washburne,NJ,0,0,0
+542,Mark Keeter,OK,0,0,0
+533,Bill Ebben,OH,0,0,0
+406,Josh Welle,NJ,1,0,0
+442,John Anzalone,NV,0,0,0
+278,David Trone,MD,1,0,0
