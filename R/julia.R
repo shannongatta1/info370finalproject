@@ -3,6 +3,7 @@ library(dplyr)
 library(scales)
 
 data <- read.csv('../data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
+dummy_data <- read.csv('../data/dem_with_dummies.csv', stringsAsFactors = FALSE)
 
 #Race
 white_can <- data %>% filter(Race == 'White')
@@ -15,11 +16,11 @@ lost <- data %>% filter(Primary.Status == 'Lost')
 race <- data.frame(race=c("White", "Nonwhite", "Unknown"), value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
 
 
-# 32% of the candidate advanced
+# 32% of the total candidates advance
 percent_advanced <- nrow(advanced)/(nrow(advanced)+nrow(lost)) * 100
 
 #pie chart
-ggplot(race, aes(x="", y=value, fill=race))+ 
+race_pie_chart <- ggplot(race, aes(x="", y=value, fill=race))+ 
   geom_bar(width = 1, stat = "identity")+
   coord_polar("y", start=0) +
   geom_text(aes(y = value/2 + 
