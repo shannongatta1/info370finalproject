@@ -1,3 +1,6 @@
+# The Democratic Primaries 2018
+### _Shannon Gatta, Andrea Jorge, Charlene  Chen, Julia Zaratan_
+
 ## A Political Shift...
 
 As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, variance of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:

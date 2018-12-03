@@ -19,29 +19,35 @@ shinyUI(fluidPage(
   (navbarPage('The Democratic Primaries 2018',
               tabPanel("A Political Shift...",
                        mainPanel(
-                         includeMarkdown("./md/A\ Political\ Shift.md")
+                         includeMarkdown("./md/A\ Political\ Shift.md"),
+                         width=12
                        )),
               tabPanel("The Data", # Include introduction and exploration?
                        mainPanel(
                          # LGBTQ EDA
                          plotOutput('LGBTQ', width = '80%', height = '500px'),
+                         
+                         
                          # Endorsements EDA
                          includeMarkdown("./md/endorsements\ EDA.md"),
                          tableOutput('endorsements_table'),
                          includeMarkdown("./md/endorsements\ EDA\ 3.md"),
                          plotOutput('endorsements_bar'), 
-                         includeMarkdown("./md/endorsements\ EDA\ 2.md"), width=12
+                         includeMarkdown("./md/endorsements\ EDA\ 2.md"), 
+                         width=12
                        )),
               tabPanel("Statistical Methods",
                        mainPanel(
                          #plotOutput('yes_bar')
+                         includeMarkdown('./md/Logistic\ Regression.md'),
+                         width=12
                        )),
               tabPanel("Machine Learning",
                        mainPanel(
                          #plotOutput('yes_bar')
                        )),
               tabPanel("So What Matters?",
-                       mainPanel(
+                       mainPanel(width=12
                         # plotOutput('yes_bar')
                        ))
   )

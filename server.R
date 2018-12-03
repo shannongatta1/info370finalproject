@@ -12,8 +12,8 @@ library(ggplot2)
 library(gridExtra)
 source('./R/andrea_EDA.R')
 source('./R/lgbtq_EDA.R')
+source('./R/julia.R')
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
   output$LGBTQ <- renderPlot({
