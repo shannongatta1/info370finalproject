@@ -16,16 +16,16 @@ library(ggplot2)
 library(GGally)
 
 
-
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
-
+scores <- read.csv('./data/model_accuracy_ML.csv', stringsAsFactors = FALSE)
+pred <- read.csv('./data/model_test_predictions.csv', stringsAsFactors = FALSE)
 ```
 
 ## A Political Shift...
 
 As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
 
-> "How can different factors about a candidate allow us to predict their likeliness of winning the Democratic Primaries for 2018?"
+> "What factors are most influential in the success of a democratic candidate in the Democratic Primaries for 2018?"
 
 We are going to predict the outcome with a binary return stating weather the candidate in question will lose or advance in the primaries. After seeing the surgence of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to dectect if the new candidates are the new norm, or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conseratives alike bring a unique persoective to their office role, and the uncommon candidate should both be informed wheather or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
 
@@ -37,26 +37,17 @@ Data and vairable explaination goes here.
 
 In order to narrow down the features we want to focus on, We will explore covariate values we found as an additive to building our statistical model. 
 
-### Co
+### LGBTQ+
+
+29% of LGBTQ advanced in the primaries, which is little less than 2% of the number of candidates that ran overall in the primaries. Perhaps success for the LGBTQ in the Democratic Party is a growing trend in comparison to previous years, but is not projecting to be the best factor in predicting a successful candidate. 
 ```{r example, echo=FALSE}
 
 ggplot(data = dems, aes(x = Primary.Status, fill = LGBTQ.)) +
   geom_bar(position=position_dodge()) + 
-  ggtitle("Results for LGBTQ+ in the Primary Races")
+  ggtitle("Results for LGBTQ+ in the Primary Races") + 
+  geom_text(stat="count", aes(label = ..count..), position = position_dodge(.9), vjust = .5)
 #ggplotly(new)
 #htmltools::tagList(list(new))
-
-```
-
-
-
-```{r facet, echo=FALSE}
-
-
-# ggpairs(dems, columns=c(dems$Office.Type, dems$Primary.Status, dems$Race, dems$Veteran., dems$LGBTQ.),
-#         colour='q',lower=list(continuous='points'),
-#         axisLabels='none',
-#         upper=list(continuous='blank'))
 
 ```
 
@@ -69,5 +60,8 @@ By using the KNN Regressor, the target is predicted by local interpolation of th
 
 ```{r ML, echo=FALSE}
 
-
+r <- plot_ly(pred, x = ~c(1:180), y = ~outcome, name = 'test_outcomes', type = 'scatter', mode = 'lines') %>%
+  add_trace(y = ~knn_pred, name = 'knn_pred', mode = 'lines') %>%
+  add_trace(y = ~rfc_pred, name = 'rfc_pred', mode = 'lines')
+  htmltools::tagList(list(r))
 ```
