@@ -1,2 +1,3 @@
-,Model Type,Score
-0,Logistic regression,0.7418032786885246
+,Model Type,Score,
+0,Logistic regression,0.741803279,
+,Multi-linear ,0.261,(rsquared value)
