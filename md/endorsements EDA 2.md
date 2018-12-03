@@ -1,0 +1,3 @@
+If you thought that having "yes" endorsements would go along with a candidate winning, you were right. Of the candidates who had "yes" endorsements, more of them advanced in the primaries than those who had "no" or "neutral" endorsements. Similarly, having "no" endorsements hurt candidate chances of winning the elections. "Neutral" endorsements didn't negatively impact results as bad as "no" endorsements. 
+
+**TLDR; Having endorsements in your favor is probably helpful in winning an election.**

@@ -1,5 +1,6 @@
 library(ggplot2)
 library(dplyr)
+library(gridExtra)
 
 # Read in democratic primary data
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
@@ -28,35 +29,27 @@ neutral_endorsements <- dems %>% filter(Yes.Endorsements > 0, No.Endorsements > 
 yes_bar <- ggplot(yes_endorsements, aes(x=Primary.Status, y=n, fill=Primary.Status))+
   geom_bar(stat = "identity")+
   ggtitle('Results for "Yes" Endorsements')+
-  labs(y='count')
+  labs(y='count')+
+  theme(legend.position="none")
 
 no_bar <- ggplot(no_endorsements, aes(x=Primary.Status, y=n, fill=Primary.Status))+
   geom_bar(stat = "identity")+
   ggtitle('Results for "No" Endorsements')+
-  labs(y='count')
+  labs(y='count')+
+  theme(legend.position="none")
 
 neutral_bar <- ggplot(neutral_endorsements, aes(x=Primary.Status, y=n, fill=Primary.Status))+
   geom_bar(stat = "identity")+
   ggtitle('Results for "Neutral" Endorsements')+
-  labs(y='count')
+  labs(y='count')+
+  theme(legend.position="none")
 
-# Our dataset also contains information on the endorsements candidates received from 
-# various individuals and groups, such as Barack Obama, Bernie Sanders, and the Working Families 
-# Party. Endorsements can have a profound effect on election outcomes, but by how much? 
+table_desc <- c('A candidate was specifically endorsed before the primary',
+                'A candidate was running against another endorsed candidate, or if they were 
+                specifically anti-endorsed before the primary (for example, if money was spent 
+                to attack the candidate)',
+                'A group did not weigh in on this candidate')
 
-# We have three types of of endorsements - yes, no, and neutral:
-# - "Yes" endorsements - a candidate was specifically endorsed before the primary
-# - "No" endorsements - a candidate was running against another endorsed candidate, or if they
-# were specifically anti-endorsed before the primary (for example, if money was spent to attack
-# the candidate)
-# - "Neutral" endorsements - a group did not weigh in on this candidate
-# After counting how many of each a candidate has, we can see the effect of this on the candidates
-# who won or lost.
+table_cat <- c('Yes', 'No', 'Neutral')
 
-# If you thought that having "yes" endorsements would go along with a candidate winning, you were
-# right. Of the candidates who had "yes" endorsements, more of them advanced in the primaries than
-# those who had "no" or "neutral" endorsements. Similarly, having "no" endorsements hurt candidate
-# chances of winning the elections. "Neutral" endorsements didn't negatively impact results as bad
-# as "no" endorsements. 
-
-# TLDR; Having endorsements in your favor is probably helpful in winning an election.
+endorsement_table <- data.frame("Type" = table_cat, "Description" = table_desc)

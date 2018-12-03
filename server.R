@@ -8,22 +8,24 @@
 #
 
 library(shiny)
+library(ggplot2)
+library(gridExtra)
 source('./R/andrea_EDA.R')
+source('./R/lgbtq_EDA.R')
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
-  output$yes_bar <- renderPlot({
-    
-    # generate bins based on input$bins from ui.R
-    # x    <- faithful[, 2] 
-    # bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    # 
-    # # draw the histogram with the specified number of bins
-    # hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    
-    yes_bar
-    
+  output$LGBTQ <- renderPlot({
+    LGBTQ_bar
+  })
+  
+  output$endorsements_bar <- renderPlot({
+    grid.arrange(yes_bar, no_bar, neutral_bar, nrow=1)
+  })
+  
+  output$endorsements_table <- renderTable({
+    endorsement_table
   })
   
 })
