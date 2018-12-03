@@ -14,9 +14,13 @@ dems$No.Endorsements <- rowSums(count_endorsements == 'No')
 write.csv(dems, file = './data/dems_with_endorsement_counts.csv', row.names = FALSE)
 
 # Count the number of candidates who advanced or lost for each endorsement category
-yes_endorsements <- dems %>% filter(Yes > 0) %>% group_by(Primary.Status) %>% count(Primary.Status)
-no_endorsements <- dems %>% filter(No > 0) %>% group_by(Primary.Status) %>% count(Primary.Status)
-neutral_endorsements <- dems %>% filter(Yes > 0, No > 0) %>% 
+yes_endorsements <- dems %>% filter(Yes.Endorsements > 0) %>% 
+                      group_by(Primary.Status) %>% 
+                      count(Primary.Status)
+no_endorsements <- dems %>% filter(No.Endorsements > 0) %>% 
+                      group_by(Primary.Status) %>% 
+                      count(Primary.Status)
+neutral_endorsements <- dems %>% filter(Yes.Endorsements > 0, No.Endorsements > 0) %>% 
                           group_by(Primary.Status) %>% 
                           count(Primary.Status)
 
