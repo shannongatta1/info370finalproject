@@ -183,6 +183,26 @@ ggplot(data = dems) +
 
 ## Machine Learning
 
+### 1. Introduction to K-Nearest-Neighbors (KNN)
+
+K-nearest-neighbors (KNN) is a robust and versatile classifier that can be used for both classification and regression predictive problems. In order to use KNN, we are given a labelled dataset consisting of training observations (x, y) and would like to capture the relationship between x and y. In this example we will use x to denote a feature (i.e., an attribute, what we are using to predict) and y to denote the outcome we are trying to predict.
+
+In the classification setting, the K-nearest neighbor algorithm essentially boils down to forming a majority vote between the K most similar instances to a given “unseen” observation. One of the pros of using a KNN model is that it can learn complex decision boundaries on the fly.It is worth noting that the minimal training phase of KNN comes both at a memory cost, since we must store a potentially huge data set, as well as a computational cost during test time since classifying a given observation requires a run down of the whole data set.
+
+### Apply KNN to Our Dataset
+
+We ended up with 811 colleges which were used to create our model. We split this data into 70% training, and 30% test data, then ran 10-fold cross validation using a k nearest neighbors algorithm to predict if a candidate would advance in the primary.  By using recursive feature elimination, we determined 10 features to predict the primary outcome: 'Yes.Endorsements','No.Endorsements', 'Office.Type_Governor', 'STEM._Yes','STEM._No','LGBTQ._Yes','Party.Support._No', 'Party.Support._Yes','Self.Funder._Yes','Elected.Official._Yes'. By using the grid search, we were able to determine the best parameters for our model which the n_neighbors was 24 and the weights were uniform. After using the pipeline to apply KNN to our dataset, we were able accurately to predict 67.8% of the primary outcome. 
+
+### 2. Introduction to Random-Forest-Classifer(RFC)
+
+Random forests is a supervised learning algorithm. It can be used both for classification and regression. It is also the most flexible and easy to use algorithm. A forest is comprised of trees. It is said that the more trees it has, the more robust a forest is. Random forests creates decision trees on randomly selected data samples, gets prediction from each tree and selects the best solution by means of voting. It also provides a pretty good indicator of the feature importance.
+
+### Apply RFC to Our Dataset
+
+We used the same 10 features with the KNN model because we wanted to compare the accuracy scores of the two models. Before doing any cross validation or grid research, we were able to accurately predict 73% of the outcome. Then we ran a 10-fold cross validation and the mean score of 74%. By using grid search, we found the best parameters of the RFC which the criterion was gini, max depth was 5, max features were auto and the number of estimators was 500. After applying the trained model to our dataset, we were able to accurately predict 75.6% of the outcome.
+
+### Comparison and Visualization
+
 The following two graphs depicted are comparing the number of accurate and inaccurate matches of the machine learning algorithm used to predict and the outcomes. Both algorithms show a consistent pattern of predicting the candidates who lost the primary, with Random Forest Regression at 70% and K Nearest Neighbors at 54%.
 
 ```{r predictions, echo=FALSE}
