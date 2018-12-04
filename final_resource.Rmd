@@ -14,6 +14,7 @@ library(reticulate)
 library(lattice)
 library(ggplot2)
 library(GGally)
+library(gridExtra)
 
 
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
@@ -23,15 +24,15 @@ pred <- read.csv('./data/model_test_predictions.csv', stringsAsFactors = FALSE)
 
 ## A Political Shift...
 
-As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, varience of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidtates that are running for the Democratic Primaries across Representative, Govenors, Senators, etc. while asking the question:
+As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, the variance of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidates that are running for the Democratic Primaries across Representative, Governors, Senators, etc. while asking the question:
 
 > "What factors are most influential in the success of a democratic candidate in the Democratic Primaries for 2018?"
 
-We are going to predict the outcome with a binary return stating weather the candidate in question will lose or advance in the primaries. After seeing the surgence of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to dectect if the new candidates are the new norm, or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conseratives alike bring a unique persoective to their office role, and the uncommon candidate should both be informed wheather or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
+We are going to predict the outcome with a binary return stating whether the candidate in question will lose or advance in the primaries. After seeing the surge of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to detect if the new candidates are the new norm or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conservatives alike bring a unique perspective to their office role, and the uncommon candidate should both be informed whether or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
 
 ## The Data
 
-Data and vairable explaination goes here.
+Data and variable explanation go here.
 
 ## Exploring The Dataset
 
@@ -39,7 +40,8 @@ In order to narrow down the features we want to focus on, We will explore covari
 
 ### LGBTQ+
 
-29% of LGBTQ advanced in the primaries, which is little less than 2% of the number of candidates that ran overall in the primaries. Perhaps success for the LGBTQ in the Democratic Party is a growing trend in comparison to previous years, but is not projecting to be the best factor in predicting a successful candidate. 
+29% of LGBTQ advanced in the primaries, which is little less than 2% of the number of candidates that ran overall in the primaries. Perhaps success for the LGBTQ in the Democratic Party is a growing trend in comparison to previous years but is not projecting to be the best factor in predicting a successful candidate. 
+
 ```{r example, echo=FALSE}
 
 ggplot(data = dems, aes(x = Primary.Status, fill = LGBTQ.)) +
@@ -56,12 +58,46 @@ ggplot(data = dems, aes(x = Primary.Status, fill = LGBTQ.)) +
 
 ## Machine Learning
 
-By using the KNN Regressor, the target is predicted by local interpolation of the targets associated with the nearest neighbors in the training set. We used grid search to cross validate and assess the accuracy of each possible model. For the grid search we used the n_neighbors which determines the amount of neighbors the KNN model should look at. We also used KNN's weight parameter to determine if points should either be weighted uniformly or by their distance from the target point. Using the auto parameter of the KNN algorithm lets it determine which type of algorithm to use when computing nearest neighbors. Our last parameter is the leaf_size which determines how many endpoints the KNN tree will have. Outside of the KNN regressor we use selectkbest to determine the best features to include in the algorithm based on their regression scores from f_regression. This model also uses a MinMaxScaler for scaling the data between 0 and 1.
+The following two graphs depicted are comparing the number of accurate and inaccurate matches of the machine learning algorithm used to predict and the outcomes. Both algorithms show a consistent pattern of predicting the candidates who lost the primary, with Random Forest Regression at 70% and K Nearest Neighbors at 54%.
 
-```{r ML, echo=FALSE}
+```{r predictions, echo=FALSE}
 
-r <- plot_ly(pred, x = ~c(1:180), y = ~outcome, name = 'test_outcomes', type = 'scatter', mode = 'lines') %>%
-  add_trace(y = ~knn_pred, name = 'knn_pred', mode = 'lines') %>%
-  add_trace(y = ~rfc_pred, name = 'rfc_pred', mode = 'lines')
-  htmltools::tagList(list(r))
+knn_agg <- count(pred, outcome, knn_pred)
+rfc_agg <- count(pred, outcome, rfc_pred)
+
+ggplot(knn_agg, aes(outcome, knn_pred, color=n)) + 
+     geom_point( size = (knn_agg$n)) +
+     xlim(-.5, 1.5)+ylim(-1, 1.5) +
+     ggtitle("Number of KNN Predictions and Outcome Correlations") + 
+     geom_text(aes(label=knn_agg$n), size=5, color = "white")
+
+ggplot(rfc_agg, aes(outcome, rfc_pred, color=n)) + 
+     geom_point( size = (rfc_agg$n)) +
+     xlim(-.5, 1.5)+ylim(-1, 1.5) +
+     ggtitle("Number of RFC Predictions and Outcome Correlations") + 
+     geom_text(aes(label=rfc_agg$n), size=5, color = "white")
+
+
+
 ```
+
+
+This bar graph depicts the overall accuracy scores received by the algorithms in comparison to the test outcomes.
+
+```{r accuracy, echo=FALSE}
+
+ggplot(data = scores, aes(x = Model.Type, y = Score, fill=Model.Type )) +
+  geom_bar(stat = "identity") + 
+  ggtitle("Accuracy Scores for Machine Learning Algorithms") + 
+  geom_text(aes(label=round(scores$Score, 2)), size=5, color = "black")
+
+
+```
+
+
+## Discussion
+
+
+
+
+## Conclusion
