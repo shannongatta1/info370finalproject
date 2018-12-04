@@ -27,6 +27,7 @@ percent_advanced <- nrow(advanced)/(nrow(advanced)+nrow(lost)) * 100
 race_pie_chart <- ggplot(race, aes(x="", y=value, fill=race))+ 
   geom_bar(width = 1, stat = "identity")+
   coord_polar("y", start=0) +
+  ggtitle("All Candidates Race Proportions") + 
   geom_text(aes(y = value/2 + 
   c(0, cumsum(value)[-length(value)]), label = percent(value/(nrow(white_can)+nrow(non_white_can)+nrow(unknown_can)))), size=5)
 
@@ -39,6 +40,7 @@ status_race_stacked <- ggplot(data%>% dplyr::count(Primary.Status, Race) %>%
          mutate(pct=n/sum(n)),              # Calculate percent within each region
        aes(Primary.Status, n, fill=Race)) +
   geom_bar(stat="identity") +
+  ggtitle("Primary Status stacked by Race category") + 
   geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
             position=position_stack(vjust=0.5))+
   labs(y='count')
@@ -47,6 +49,7 @@ race_status_stacked <- ggplot(data%>% dplyr::count(Race, Primary.Status) %>%
          mutate(pct=n/sum(n)),              # Calculate percent within each region
        aes(Race, n, fill=Primary.Status)) +
   geom_bar(stat="identity") +
+  ggtitle("Race category stacked by Primary Status") + 
   geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
             position=position_stack(vjust=0.5))+
   labs(y='count')

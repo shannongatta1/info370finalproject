@@ -22,6 +22,8 @@ library(kableExtra)
 dems <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 scores <- read.csv('./data/model_accuracy_ML.csv', stringsAsFactors = FALSE)
 pred <- read.csv('./data/model_test_predictions.csv', stringsAsFactors = FALSE)
+stat_pred <- read.csv('./data/logistic_test_predictions.csv', stringsAsFactors = FALSE)
+
 ```
 
 ## A Political Shift...
@@ -239,6 +241,39 @@ ggplot(data = scores, aes(x = Model.Type, y = Score, fill=Model.Type )) +
 
 ```
 
+## Statistical Modeling
+
+**Confusion matrix:**
+A confusion matrix shows the intersection of the "true outcomes" (rows) vs. the "predicted" (columns) and how they overlap which can show the values for true/false negatives/positives.  
+$$\left[\begin{array}
+{rrr}
+157 & 13 \\
+50 & 24 \\
+\end{array}\right]
+$$
+
+**Sensitivity and Specificity: **
+
+* sensitivity = 24 / (24 + 50) = 0.32432432432432434
+* specificity = 157 / (157+ 13) = 0.9235294117647059
+
+* type1error = 1 - specificity = 0.07647058823529407
+* type2error = 1 - sensitivity = 0.6756756756756757
+
+* The portion of accurately predicted advanced status (true positive) was 32%
+* The portion of accurately predicted no advanced status (true negative) was 92%
+* The portion of instances that were incorrectly identified as positive cases was 7%
+* The portion of instances that were incorrectly identified as negative was 67.5%
+
+```{r statistical, echo=FALSE}
+logistic_agg <- count(stat_pred, outcome, lr_pred)
+
+ggplot(logistic_agg, aes(outcome, lr_pred, color=n)) + 
+     geom_point( size = (logistic_agg$n)) +
+     xlim(-.5, 1.5)+ylim(-1, 1.5) +
+     ggtitle("Number of Logistic Regression Predictions and Outcome Correlations") + 
+     geom_text(aes(label=logistic_agg$n), size=5, color = "white")
+```
 
 ## Discussion
 
