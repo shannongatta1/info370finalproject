@@ -244,6 +244,7 @@ ggplot(data = scores, aes(x = Model.Type, y = Score, fill=Model.Type )) +
 ## Statistical Modeling
 
 **Confusion matrix:**
+
 A confusion matrix shows the intersection of the "true outcomes" (rows) vs. the "predicted" (columns) and how they overlap which can show the values for true/false negatives/positives.  
 $$\left[\begin{array}
 {rrr}
@@ -252,7 +253,7 @@ $$\left[\begin{array}
 \end{array}\right]
 $$
 
-**Sensitivity and Specificity: **
+**Sensitivity and Specificity:**
 
 * sensitivity = 24 / (24 + 50) = 0.32432432432432434
 * specificity = 157 / (157+ 13) = 0.9235294117647059
@@ -266,6 +267,7 @@ $$
 * The portion of instances that were incorrectly identified as negative was 67.5%
 
 ```{r statistical, echo=FALSE}
+
 logistic_agg <- count(stat_pred, outcome, lr_pred)
 
 ggplot(logistic_agg, aes(outcome, lr_pred, color=n)) + 
@@ -275,9 +277,10 @@ ggplot(logistic_agg, aes(outcome, lr_pred, color=n)) +
      geom_text(aes(label=logistic_agg$n), size=5, color = "white")
 ```
 
-## Discussion
+## Limitations
 
-
-
+Our dataset lacked certain variables that we thought would be useful features in our analysis. Having gender could track the likeliness of men or women winning or losing the primaries. The source where we took our dataset from stated they had gender at one point in their content description, but did not show up in the csv.  Age was another feature that could be useful in understanding if diversity is higher in younger candidates vs older candidates, or reflecting the amount of people running for re-election and that age range. This dataset was focused on the 2018 Democratic Primaries, so we could not use previous year's data to fill in missing values. If there were too many missing values for one column, we ultimately did not use that factor.  As such, if we applied dummy variables to some features, say for instance State, there would be 50 columns. Any features that resulted in an overwhelming amount of columns was not utilized in analysis. 
 
 ## Conclusion
+
+
