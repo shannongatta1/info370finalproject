@@ -1,50 +1,65 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
+library(shinythemes)
 library(markdown)
 library(dplyr)
 library(ggplot2)
 library(plotly)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
+# Define UI for application
+shinyUI(fluidPage(theme = shinytheme('flatly'),
   
   (navbarPage('The Democratic Primaries 2018',
               tabPanel("A Political Shift...",
                        mainPanel(
-                         includeMarkdown("./md/A\ Political\ Shift.md"),
+                         includeMarkdown("./md/a_political_shift.md"),
                          width=12
                        )),
-              tabPanel("The Data", # Include introduction and exploration?
+              tabPanel("Meet our Data", 
+                       mainPanel(
+                         includeMarkdown("./md/data_intro.md"),
+                         htmlOutput('data_preview'),
+                         includeMarkdown('./md/data_intro_2.md'),
+                         width=12
+                       )),
+              tabPanel("Get to Know our Data",
                        mainPanel(
                          # LGBTQ EDA
-                         plotOutput('LGBTQ', width = '80%', height = '500px'),
-                         
-                         
+                         includeMarkdown("./md/lgbtq_EDA.md"),
+                         plotOutput('LGBTQ_bar', width = '80%'),
+                         # Office EDA
+                         plotOutput('office_bar', width = '80%'),
+                         # Race EDA - resource Julia's data files
+                         includeMarkdown('./md/race_EDA.md'),
+                         plotOutput('race_pie', width = '80%'),
+                         includeMarkdown('./md/race_EDA_2.md'),
+                         plotOutput('race_status_pair'),
                          # Endorsements EDA
-                         includeMarkdown("./md/endorsements\ EDA.md"),
+                         includeMarkdown("./md/endorsements_EDA.md"),
                          tableOutput('endorsements_table'),
-                         includeMarkdown("./md/endorsements\ EDA\ 3.md"),
+                         includeMarkdown("./md/endorsements_EDA_2.md"),
                          plotOutput('endorsements_bar'), 
-                         includeMarkdown("./md/endorsements\ EDA\ 2.md"), 
+                         includeMarkdown("./md/endorsements_EDA_3.md"), 
                          width=12
                        )),
-              tabPanel("Statistical Methods",
+              tabPanel('Making our Predictions',
                        mainPanel(
-                         #plotOutput('yes_bar')
-                         includeMarkdown('./md/Logistic\ Regression.md'),
+                         tabsetPanel(
+                           tabPanel("Statistical Methods",
+                                    mainPanel(
+                                      includeMarkdown('./md/logistic_regression.md'),
+                                      width=12
+                                    )),
+                           tabPanel("Machine Learning",
+                                    mainPanel(
+                                      includeMarkdown('./md/ml_analysis.md'),
+                                      plotOutput('knn_plot'),
+                                      plotOutput('rfc_plot'),
+                                      includeMarkdown('./md/ml_analysis_2.md'),
+                                      plotOutput('ml_acc'),
+                                      width=12
+                                    ))
+                         ),
                          width=12
-                       )),
-              tabPanel("Machine Learning",
-                       mainPanel(
-                         #plotOutput('yes_bar')
                        )),
               tabPanel("So What Matters?",
                        mainPanel(width=12

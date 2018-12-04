@@ -1,0 +1,1 @@
+This bar graph depicts the overall accuracy scores received by the algorithms in comparison to the test outcomes.
