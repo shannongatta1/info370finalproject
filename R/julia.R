@@ -2,8 +2,8 @@ library(ggplot2)
 library(dplyr)
 library(scales)
 
-data <- read.csv('../data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
-dummy_data <- read.csv('../data/dem_with_dummies.csv', stringsAsFactors = FALSE)
+data <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
+dummy_data <- read.csv('./data/dem_with_dummies.csv', stringsAsFactors = FALSE)
 
 #Race
 white_can <- data %>% filter(Race == 'White')
