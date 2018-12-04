@@ -2,24 +2,28 @@ library(ggplot2)
 library(dplyr)
 library(scales)
 
+# Read in democratic primary data
 data <- read.csv('./data/dem_candidates_prepped.csv', stringsAsFactors = FALSE)
 dummy_data <- read.csv('./data/dem_with_dummies.csv', stringsAsFactors = FALSE)
 
-#Race
+# Filter candidates by race
 white_can <- data %>% filter(Race == 'White')
 non_white_can <- data %>% filter(Race == 'Nonwhite')
 unknown_can <- data %>% filter(Race == 'Unknown')
 
+# Filter candidates by advanced or lost
 advanced <- data %>% filter(Primary.Status == 'Advanced')
 lost <- data %>% filter(Primary.Status == 'Lost')
 
-race <- data.frame(race=c("White", "Nonwhite", "Unknown"), value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
+# Create dataframe of counts for each race type
+race <- data.frame(race=c("White", "Nonwhite", "Unknown"), 
+                   value=c(nrow(white_can), nrow(non_white_can), nrow(unknown_can)))
 
 
-# 32% of the total candidates advance
+# Calculate percentage of advanced - 32% of the total candidates advance
 percent_advanced <- nrow(advanced)/(nrow(advanced)+nrow(lost)) * 100
 
-#pie chart
+# Create pie chart of race distribution
 race_pie_chart <- ggplot(race, aes(x="", y=value, fill=race))+ 
   geom_bar(width = 1, stat = "identity")+
   coord_polar("y", start=0) +
@@ -27,20 +31,22 @@ race_pie_chart <- ggplot(race, aes(x="", y=value, fill=race))+
   c(0, cumsum(value)[-length(value)]), label = percent(value/(nrow(white_can)+nrow(non_white_can)+nrow(unknown_can)))), size=5)
 
             
-# stacked bar charts
+# Create stacked bar charts for race and primary status
 data$Race <- factor(data$Race) # Create a categorical variable
 data$Primary.Status <- factor(data$Primary.Status) # Create categorical variable
 
-status_race_stacked <- ggplot(data%>% count(Primary.Status, Race) %>%
+status_race_stacked <- ggplot(data%>% dplyr::count(Primary.Status, Race) %>%
          mutate(pct=n/sum(n)),              # Calculate percent within each region
        aes(Primary.Status, n, fill=Race)) +
   geom_bar(stat="identity") +
   geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
-            position=position_stack(vjust=0.5))
+            position=position_stack(vjust=0.5))+
+  labs(y='count')
 
-race_status_stacked <- ggplot(data%>% count(Race, Primary.Status) %>%  
+race_status_stacked <- ggplot(data%>% dplyr::count(Race, Primary.Status) %>%  
          mutate(pct=n/sum(n)),              # Calculate percent within each region
        aes(Race, n, fill=Primary.Status)) +
   geom_bar(stat="identity") +
   geom_text(aes(label=paste0(sprintf("%1.1f", pct*100),"%")), 
-            position=position_stack(vjust=0.5))
+            position=position_stack(vjust=0.5))+
+  labs(y='count')
