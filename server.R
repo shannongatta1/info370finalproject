@@ -11,22 +11,40 @@ library(dplyr)
 library(shiny)
 library(ggplot2)
 library(gridExtra)
-source('./R/lgbtq_office_EDA.R')
-source('./R/julia.R')
+library(plotly)
 source('./R/data_intro.R')
-source('./R/ml_analysis.R')
-source('./R/andrea_EDA.R')
+source('./R/lgbtq_EDA.R')
+source('./R/office_EDA.R')
+source('./R/race_EDA.R')
+source('./R/endorsements_EDA.R')
+source('./R/model_analysis.R')
 
 shinyServer(function(input, output) {
   
-  output$data_preview <- renderText ({
+  output$data_preview <- renderText({
     data_preview
+  })
+  
+  output$data_desc <- renderTable({
+    descriptions
   })
   
   output$LGBTQ_bar <- renderPlot({
     LGBTQ_bar
   })
   
+  output$p_percentage <- renderPlotly({
+    p_percentage
+  })
+  
+  output$office_pair <- renderPlotly({
+    subplot(p_percentage_success, office_bar)
+  })
+  
+  output$p_percentage_success <- renderPlotly({
+    p_percentage_success
+  })
+
   output$office_bar <- renderPlot({
     office_bar
   })
@@ -47,6 +65,10 @@ shinyServer(function(input, output) {
     endorsement_table
   })
   
+  output$lr_plot <- renderPlot({
+    lr_plot
+  })
+  
   output$knn_plot <- renderPlot({
     knn_plot
   })
@@ -55,8 +77,11 @@ shinyServer(function(input, output) {
     rfc_plot
   })
   
-  output$ml_acc <- renderPlot({
-    ml_acc_score
+  output$model_acc <- renderTable({
+    all_scores
   })
   
+  output$model_plot <- renderPlot({
+    return (resultGraph(input$model))
+  })
 })

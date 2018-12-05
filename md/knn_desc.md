@@ -1,0 +1,5 @@
+## K-Nearest Neighbors
+
+**K-Nearest Neighbors** (KNN) is a robust and versatile machine learning classifier that can be used for both classification and regression predictive problems. In order to use KNN, we are given a labelled dataset consisting of training observations (x, y) and would like to capture the relationship between x and y. In this example we will use x to denote a feature (i.e., an attribute, what we are using to predict) and y to denote the outcome we are trying to predict.
+
+In the classification setting, the KNN algorithm essentially boils down to forming a majority vote between the K most similar instances to a given “unseen” observation. One of the pros of using a KNN model is that it can learn complex decision boundaries on the fly.It is worth noting that the minimal training phase of KNN comes both at a memory cost, since we must store a potentially huge data set, as well as a computational cost during test time since classifying a given observation requires a run down of the whole data set.

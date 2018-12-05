@@ -14,56 +14,115 @@ shinyUI(fluidPage(theme = shinytheme('flatly'),
                          includeMarkdown("./md/a_political_shift.md"),
                          width=12
                        )),
-              tabPanel("Meet our Data", 
+              tabPanel("Meet Our Data", 
                        mainPanel(
                          includeMarkdown("./md/data_intro.md"),
+                         tags$br(),
                          htmlOutput('data_preview'),
+                         tags$br(),
                          includeMarkdown('./md/data_intro_2.md'),
+                         tags$br(),
+                         tableOutput('data_desc'),
                          width=12
                        )),
-              tabPanel("Get to Know our Data",
+              tabPanel("Get to Know Our Data",
                        mainPanel(
-                         # LGBTQ EDA
-                         includeMarkdown("./md/lgbtq_EDA.md"),
-                         plotOutput('LGBTQ_bar', width = '80%'),
-                         # Office EDA
-                         plotOutput('office_bar', width = '80%'),
-                         # Race EDA - resource Julia's data files
-                         includeMarkdown('./md/race_EDA.md'),
-                         plotOutput('race_pie', width = '80%'),
-                         includeMarkdown('./md/race_EDA_2.md'),
-                         plotOutput('race_status_pair'),
-                         # Endorsements EDA
-                         includeMarkdown("./md/endorsements_EDA.md"),
-                         tableOutput('endorsements_table'),
-                         includeMarkdown("./md/endorsements_EDA_2.md"),
-                         plotOutput('endorsements_bar'), 
-                         includeMarkdown("./md/endorsements_EDA_3.md"), 
-                         width=12
-                       )),
-              tabPanel('Making our Predictions',
-                       mainPanel(
+                         includeMarkdown('./md/EDA_intro.md'),
+                         tags$br(),
                          tabsetPanel(
-                           tabPanel("Statistical Methods",
+                           # LGBTQ EDA
+                           tabPanel("LGBTQ",
+                             mainPanel(
+                               includeMarkdown("./md/lgbtq_EDA.md"),
+                               tags$br(),
+                               plotOutput('LGBTQ_bar', width = '80%'),
+                               tags$br(),
+                               includeMarkdown("./md/lgbtq_EDA_2.md"),
+                               width=12
+                             )
+                           ),
+                           # Office EDA
+                           tabPanel("Office Type",
+                             mainPanel(
+                               includeMarkdown("./md/office_EDA.md"),
+                               plotlyOutput('p_percentage'),
+                               includeMarkdown("./md/office_EDA_2.md"),
+                               plotlyOutput('office_pair'),
+                               width=12
+                               )
+                           ),
+                           # Race EDA
+                           tabPanel("Race",
+                                    mainPanel(
+                                      includeMarkdown('./md/race_EDA.md'),
+                                      plotOutput('race_pie', width = '80%'),
+                                      includeMarkdown('./md/race_EDA_2.md'),
+                                      plotOutput('race_status_pair'),
+                                      width=12
+                                    )
+                           ),
+                           # Endorsements EDA
+                           tabPanel("Endorsements",
+                                    mainPanel(
+                                      includeMarkdown("./md/endorsements_EDA.md"),
+                                      tableOutput('endorsements_table'),
+                                      includeMarkdown("./md/endorsements_EDA_2.md"),
+                                      plotOutput('endorsements_bar'), 
+                                      tags$br(),
+                                      includeMarkdown("./md/endorsements_EDA_3.md"),
+                                      width=12
+                                    )
+                           )),
+                         width=12
+                       )),
+              tabPanel('Our Prediction Models',
+                       mainPanel(
+                         includeMarkdown('./md/model_intro.md'),
+                         tags$br(),
+                         tabsetPanel(
+                           tabPanel("Statistical Analysis: Logistic Regression",
                                     mainPanel(
                                       includeMarkdown('./md/logistic_regression.md'),
                                       width=12
                                     )),
-                           tabPanel("Machine Learning",
+                           tabPanel("Machine Learning: K Nearest Neighbors",
                                     mainPanel(
-                                      includeMarkdown('./md/ml_analysis.md'),
-                                      plotOutput('knn_plot'),
-                                      plotOutput('rfc_plot'),
-                                      includeMarkdown('./md/ml_analysis_2.md'),
-                                      plotOutput('ml_acc'),
+                                      includeMarkdown('./md/knn_desc.md'),
+                                      includeMarkdown('./md/knn_app.md'),
                                       width=12
-                                    ))
-                         ),
+                                    )),
+                           tabPanel("Machine Learning: Random Forest",
+                                    mainPanel(
+                                      includeMarkdown('./md/rfc_desc.md'),
+                                      includeMarkdown('./md/rfc_app.md'),
+                                      width=12)
+                                    )),
+                         tags$br(),
                          width=12
-                       )),
+                         ),
+                        includeMarkdown('./md/limitations.md'),
+                        width=12
+                       ),
               tabPanel("So What Matters?",
-                       mainPanel(width=12
-                        # plotOutput('yes_bar')
+                       mainPanel(
+                         includeMarkdown('./md/model_comparison.md'),
+                         tableOutput('model_acc'),
+                         includeMarkdown('./md/model_comparison_2.md'),
+                         tags$br(),
+                         sidebarLayout(
+                           sidebarPanel(
+                             radioButtons("model", "Model Type:",
+                                          c("KNN" = "knn",
+                                            "Random Forest" = "rfc",
+                                            "Logistic" = "lr"),
+                                          selected = 'knn')
+                           ), 
+                           mainPanel(
+                             plotOutput('model_plot')
+                           )
+                         ),
+                         includeMarkdown('./md/conclusion.md'),
+                         width=12
                        ))
   )
   )

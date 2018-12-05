@@ -1,0 +1,3 @@
+## Model Comparison and Visualizations
+
+All of our methods (KNN, RFC, and Logistic regression) had very similar accuracy scores, with **RFC** being the **best model** for predicting the primary status of whether or not the democratic candidate advanced based on the features: `'Yes_Endorsements'`,`'No_Endorsements'`, `'Office_Type_Governor'`, `'STEM_Yes'`,`'STEM_No'`,`'LGBTQ_Yes'`,`'Party_Support_No'`.

@@ -1,3 +1,3 @@
 ### LGBTQ 
 
-29% of LGBTQ advanced in the primaries, which is little less than 2% of the number of candidates that ran overall in the primaries. Perhaps success for the LGBTQ in the Democratic Party is a growing trend in comparison to previous years, but is not projecting to be the best factor in predicting a successful candidate. 
+In relatively recent years, the LGBTQ movement has made so much progress in breaking down barriers and advocating for social justice. In American politics, we've seen a rising number of candidates who openly identify as LGBTQ because it's becoming a normalized part of our society. As such, it's important to see the effect this factor has on elections, if any, and could perhaps act as an progress indicator for the movement. Below, we can see the results for the Democratic primaries, split by whether or not a person openly identified as LGBTQ:

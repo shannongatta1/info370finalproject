@@ -4,8 +4,13 @@ library(kableExtra)
 library(plotly)
 library(ggplot2)
 
-# Read in encoded democratic primary data
+# Read in democratic primary data
 preview <- read.csv('./data/dem_with_dummies_renamed.csv', stringsAsFactors = FALSE)
+descriptions <- read.csv('./md/dataset_description.csv', stringsAsFactors = FALSE)
+desc <- descriptions[[2]] %>% unlist(.)
+col <- descriptions[[1]] %>% unlist(.)
+descriptions <- as.data.frame(col)
+descriptions$desc <- desc
 
 # Create preview of data to be used in final resource
 preview$X <- NULL

@@ -1,0 +1,1 @@
+Among the candidates within each office type, **0.33** senators and **0.34** representatives advanced in the primary while only **0.22** governors advanced. This potentially indicates a lower possibility of winning the primary if the candidate was running for a governor position. 

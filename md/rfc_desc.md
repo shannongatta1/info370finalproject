@@ -1,0 +1,3 @@
+## Random Forest
+
+**Random forest** is a supervised learning algorithm that can be used both for classification and regression. In this model, a forest is comprised of trees. The more trees it has, the more robust a forest is. Random forests creates decision trees on randomly selected data samples, gets prediction from each tree, and selects the best solution by means of voting. It's the randomness that helps increase the accuracy of the model. It also provides a pretty good indicator of the feature importance.
