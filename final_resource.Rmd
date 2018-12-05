@@ -92,7 +92,7 @@ Column | Description
 
 ## Exploring The Dataset
 
-In order to narrow down the features we want to focus on, We will explore covariate values we found as an additive to building our statistical model. 
+In order to narrow down the features we want to focus on, we will explore covariate values we found as an additive to building our statistical model. 
 
 ### LGBTQ+
 
@@ -112,9 +112,9 @@ ggplot(data = dems, aes(x = Primary.Status, fill = LGBTQ.)) +
 
 ### Race
 
-Based on the findings, it is first determined that 32% of all candidates advanced. Therefore, if race was not related to the likelihood that a candidate advances, then 32% of each race group (White, nonwhite, and unknown) would advance. To look at the overall makeup of the candidates, the pie chart shows that 55.7% of the candidates are white, 19.2% are nonwhite, and 25% are unknown. 
+First, it should be noted that 32% of all candidates advanced. Therefore, if race was not related to the likelihood that a candidate advances, then 32% of each race group (White, nonwhite, and unknown) would advance. To look at the overall makeup of the candidates, the pie chart shows that 55.7% of the candidates are white, 19.2% are nonwhite, and 25% are unknown. 
 
-In the stacked bar chart that groups by Primary Status and shows the percentages of each for each bar, 59.2% of the advanced candidates were white, 23.8% were nonwhite, and 17.0% were unknown. Since these proportions are not equal the overall makeup, race could be an influential factor on the primary status of a candidate. To see this in a different way, the stacked bar chart that groups first by race and stacks by primary status shows that the percentage of white that advanced is higher than any other race category that advanced.  
+In the stacked bar chart that groups by Primary Status and shows the percentages of each for each bar, 59.2% of the advanced candidates were white, 23.8% were nonwhite, and 17.0% were unknown. Since these proportions are not equal the overall makeup, race could be an influential factor on the primary status of a candidate. At the same time, these proportions are not that far off from the overall makeup, and therefore may be a less defining factor when predicting whether a candidate advanced. To see this in a different way, the stacked bar chart that groups first by race and stacks by primary status shows that the percentage of white that advanced is higher than any other race category that advanced.  
 
 ```{r race, echo=FALSE}
 source("./R/julia.R")
