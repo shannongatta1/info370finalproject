@@ -250,8 +250,7 @@ $$\left[\begin{array}
 {rrr}
 157 & 13 \\
 50 & 24 \\
-\end{array}\right]
-$$
+\end{array}\right]$$
 
 **Sensitivity and Specificity:**
 
@@ -277,6 +276,8 @@ ggplot(logistic_agg, aes(outcome, lr_pred, color=n)) +
      geom_text(aes(label=logistic_agg$n), size=5, color = "white")
 ```
 
+
+
 ## Limitations
 
 Our dataset lacked certain variables that we thought would be useful features in our analysis. Having gender could track the likeliness of men or women winning or losing the primaries. The source where we took our dataset from stated they had gender at one point in their content description, but did not show up in the csv.  Age was another feature that could be useful in understanding if diversity is higher in younger candidates vs older candidates, or reflecting the amount of people running for re-election and that age range. This dataset was focused on the 2018 Democratic Primaries, so we could not use previous year's data to fill in missing values. If there were too many missing values for one column, we ultimately did not use that factor.  As such, if we applied dummy variables to some features, say for instance State, there would be 50 columns. Any features that resulted in an overwhelming amount of columns was not utilized in analysis. 
@@ -285,8 +286,8 @@ Our dataset lacked certain variables that we thought would be useful features in
 
 Method | Accuracy Score 
 -------|-----------------
-KNN | 0.76
-RFC | 0.68
+KNN | 0.68
+RFC | 0.76
 Logistic | 0.74
 
-All of our methods (KNN, RFC, and Logistic regression) had very similar accuracy scores, with KNN being the best model for predicting the primary status of whether or not the democratic candidate advanced based on the features: 'Yes.Endorsements','No.Endorsements', 'Office.Type_Governor', 'STEM._Yes','STEM._No','LGBTQ._Yes','Party.Support._No'. Despite having some limitations in the lack of features that were given, we were happy to see that we were able to predict with a satisfactory accuracy score of 76%  based on factors such as endorsements, office type, STEM, LGBTQ, and party support, which supported our original hypothesis that some of the given factors would be able to give us an idea of whether a democratic candidate would advance.  With the increasing attention to technology and LGBTQ rights, factors as STEM and LGBTQ were not a surprise to us, although these might not have been as important in past elections. Overall, this model and findings can help people who are politically active or want a better understanding of the political environment of which factors may be important to democrats when voting for candidates.
+All of our methods (KNN, RFC, and Logistic regression) had very similar accuracy scores, with RFC being the best model for predicting the primary status of whether or not the democratic candidate advanced based on the features: 'Yes.Endorsements','No.Endorsements', 'Office.Type_Governor', 'STEM._Yes','STEM._No','LGBTQ._Yes','Party.Support._No'. Despite having some limitations in the lack of features that were given, we were happy to see that we were able to predict with a satisfactory accuracy score of 76%  based on factors such as endorsements, office type, STEM, LGBTQ, and party support, which supported our original hypothesis that some of the given factors would be able to give us an idea of whether a democratic candidate would advance.  With the increasing attention to technology and LGBTQ rights, factors as STEM and LGBTQ were not a surprise to us, although these might not have been as important in past elections. Overall, this model and findings can help people who are politically active or want a better understanding of the political environment of which factors may be important to democrats when voting for candidates.
