@@ -1,0 +1,12 @@
+name: final_resource
+title: final_resource
+username:
+account: sgatta
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 605008
+bundleId: 1742752
+url: https://sgatta.shinyapps.io/final_resource/
+when: 1544024317.50055
+asMultiple: FALSE
+asStatic: FALSE
