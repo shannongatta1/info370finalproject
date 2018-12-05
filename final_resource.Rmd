@@ -30,7 +30,7 @@ stat_pred <- read.csv('./data/logistic_test_predictions.csv', stringsAsFactors =
 
 As the coming of a younger generation moves into politics^[1](https://fivethirtyeight.com/features/democrats-primaries-candidates-demographics/)^, so has the shift of what you could picture an elected official for the 2018 Elections to look like. Even so, the variance of gender, color, LGBTQ, among other features are still at a smaller percentage than the white male counterpart. There are reasons for this, such as the strong inclination for voters to elect someone that they share an identity with, an elected official who has held the seat for many years, etc.^[2](https://www.vox.com/polyarchy/2016/8/30/12697920/race-dividing-american-politics)^ We wanted to bring focus to the kind of candidates that are running for the Democratic Primaries across Representative, Governors, Senators, etc. while asking the question:
 
-> "What factors are most influential in the success of a democratic candidate in the Democratic Primaries for 2018?"
+> "How can different factors about a democratic candidate allow us to predict whether he/she wins the primary?"
 
 We are going to predict the outcome with a binary return stating whether the candidate in question will lose or advance in the primaries. After seeing the surge of candidates with uncommon factors making waves in the media on both liberal and conservative platforms, we decided to compare the numbers ourselves to detect if the new candidates are the new norm or exceptions to the rules. We strive to connect with the politically active community, to bring facts to voters, on both sides of the spectrum. Diversity for liberals and conservatives alike bring a unique perspective to their office role, and the uncommon candidate should both be informed whether or not the war has been won, and their diversity truly brings favorable results to their campaign, or if this is just the beginning.
 
@@ -283,4 +283,10 @@ Our dataset lacked certain variables that we thought would be useful features in
 
 ## Conclusion
 
+Method | Accuracy Score 
+-------|-----------------
+KNN | 0.76
+RFC | 0.68
+Logistic | 0.74
 
+All of our methods (KNN, RFC, and Logistic regression) had very similar accuracy scores, with KNN being the best model for predicting the primary status of whether or not the democratic candidate advanced based on the features: 'Yes.Endorsements','No.Endorsements', 'Office.Type_Governor', 'STEM._Yes','STEM._No','LGBTQ._Yes','Party.Support._No'. Despite having some limitations in the lack of features that were given, we were happy to see that we were able to predict with a satisfactory accuracy score of 76%  based on factors such as endorsements, office type, STEM, LGBTQ, and party support, which supported our original hypothesis that some of the given factors would be able to give us an idea of whether a democratic candidate would advance.  With the increasing attention to technology and LGBTQ rights, factors as STEM and LGBTQ were not a surprise to us, although these might not have been as important in past elections. Overall, this model and findings can help people who are politically active or want a better understanding of the political environment of which factors may be important to democrats when voting for candidates.
