@@ -7,4 +7,4 @@ As the coming of a younger generation moves into politics, so has the shift of w
 
 Find the Project Proposal link [here](https://shannongatta1.github.io/info370finalproject/)
 
-Find the Final Resource link [here](https://sgatta.shinyapps.io/final_resource/)
+Find the Final Resource link [here](https://jzaratan.shinyapps.io/info370finalproject/)
